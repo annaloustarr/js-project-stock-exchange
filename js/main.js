@@ -17,6 +17,7 @@ function getCompanyData(x) {
       console.log(companyList);
       for (let i = 0; i < companyList.length; i++) {
         let li = document.createElement("li");
+<<<<<<< HEAD
         let companyName = document.createElement("a");
         companyName.setAttribute(
           "href",
@@ -28,6 +29,11 @@ function getCompanyData(x) {
           "href",
           "https://financialmodelingprep.com/api/v3/search?query=AA&limit=10&exchange=NASDAQ"
         );
+=======
+        let companyName = document.createElement("span");
+        companyName.innerText = companyList[i].name;
+        let companySymbol = document.createElement("span");
+>>>>>>> fc20179b40314fe3c0ce3813e2fa029657b6c2a9
         companySymbol.innerText = " (" + companyList[i].symbol + ")";
         li.append(companyName, companySymbol);
         listDiv.appendChild(li);
