@@ -6,8 +6,10 @@ let listDiv = document.getElementById("dataList");
 function getCompanyData(x) {
   document.getElementById("loader").classList.remove("hidden");
   document.getElementById("searchResults").classList.remove("hidden");
+  let userInput = document.getElementById("myInput").value;
+  console.log(userInput);
   fetch(
-    "https://financialmodelingprep.com/api/v3/search?query=AA&limit=10&exchange=NASDAQ"
+    `https://financialmodelingprep.com/api/v3/search?query=${userInput}&limit=10&exchange=NASDAQ`
   )
     .then(response => {
       return response.json();
