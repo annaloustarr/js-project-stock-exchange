@@ -14,21 +14,24 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <div>
-      <span id="companyLogo"></span>
+    <div class="company-title">
+      <span id="companyLogo" class="company-logo"></span>
       <span id="companyName" class="company-name"></span>
     </div>
     <div>
-      <span id="stockPrice"></span>
-      <span id="stockChanges"></span>
+      <span id="stockPrice" class="stock-price"></span>
+      <span id="stockChanges" class="stock-changes"></span>
     </div>
-    <div id="Description"></div>
-    <div>
-      Chart
+    <div id="description" class="description"></div>
+    <div id="loader2" class="loader loader2-position"></div>
+
+    <div class="chart-size">
+      <canvas id="myChart"></canvas>
     </div>
 
     <script src="js/company.js"></script>
