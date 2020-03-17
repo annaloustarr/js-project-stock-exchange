@@ -1,6 +1,7 @@
 let symbolString;
 document.getElementById("loader2").classList.add("hidden");
 
+// get the query string when window opens
 window.onload = function() {
   let qs = document.location.search.substring(
     1,
@@ -8,11 +9,11 @@ window.onload = function() {
   );
   let qsSymbol = qs.split("=");
   let symbolString = qsSymbol[1];
-  console.log(symbolString);
   getCompanyProfile(symbolString);
   getCompanyStockHistory(symbolString);
 };
 
+// get company profile and fill html elements
 function getCompanyProfile(symbolString) {
   document.getElementById("loader2").classList.remove("hidden");
   fetch(
@@ -34,8 +35,8 @@ function getCompanyProfile(symbolString) {
       let imageSpan = document.getElementById("companyLogo");
       let myImg = document.createElement("IMG");
       myImg.setAttribute("src", companyImage);
-      // myImg.setAttribute("width", "70");
-      myImg.setAttribute("height", "20%");
+      // myImg.setAttribute("width", "50px");
+      myImg.setAttribute("height", "50px");
       myImg.setAttribute("alt", "The logo");
       imageSpan.appendChild(myImg);
 
@@ -55,18 +56,17 @@ function getCompanyProfile(symbolString) {
     });
 }
 
+// get comapny stock price history and pass it to chart drawing function
 function getCompanyStockHistory(symbolString) {
   fetch(
     `https://financialmodelingprep.com/api/v3/historical-price-full/${symbolString}?serietype=line`
   )
     .then(response => {
-      console.log(response);
       return response.json();
     })
     .then(data => {
       let companyStockData = data.historical;
 
-      console.log(companyStockData);
       let datalabelsArray = [];
       let dataPointsArray = [];
       for (let i = 0; i < companyStockData.length; i++) {
@@ -82,11 +82,11 @@ function getCompanyStockHistory(symbolString) {
     });
 }
 
+// Draw the chart with the stock price history
 function drawChart(datalabelsArray, dataPointsArray) {
   let ctx = document.getElementById("myChart").getContext("2d");
   let chart = new Chart(ctx, {
     type: "line",
-    // The data for our dataset
     data: {
       labels: datalabelsArray,
       datasets: [
@@ -99,8 +99,6 @@ function drawChart(datalabelsArray, dataPointsArray) {
         }
       ]
     },
-    // Configuration options go here
     options: {}
   });
 }
-drawChart();

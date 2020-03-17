@@ -35,13 +35,42 @@ function getCompanyData(x) {
         let companyName = document.createElement("a");
         companyName.setAttribute("href", `/company.html?symbol=${mySymbol}`);
         companyName.innerText = companyList[i].name;
+        companyName.classList.add("search-page-company-name");
 
         let companySymbol = document.createElement("a");
         companySymbol.setAttribute("href", `/company.html?symbol=${mySymbol}`);
         companySymbol.innerText = " (" + companyList[i].symbol + ")";
 
-        li.append(companyName, companySymbol);
-        listDiv.appendChild(li);
+        fetch(
+          `https://financialmodelingprep.com/api/v3/company/profile/${mySymbol}`
+        )
+          .then(response => {
+            return response.json();
+          })
+          .then(data => {
+            let companyProfile = data.profile;
+
+            let companyImage = companyProfile.image;
+            let companyChanges = companyProfile.changes;
+            companyChanges.id = "stockChanges";
+            companyChanges.class = "changes-size";
+
+            let myImg = document.createElement("IMG");
+            myImg.setAttribute("src", companyImage);
+            myImg.setAttribute("height", "25px");
+
+            let changesText = document.createElement("span");
+            changesText.innerHTML = "(" + companyChanges + "%)";
+
+            if (companyChanges >= 0) {
+              changesText.classList.add("lightgreen");
+            } else {
+              changesText.classList.add("red");
+            }
+
+            li.append(myImg, companyName, companySymbol, changesText);
+            listDiv.appendChild(li);
+          });
       }
       document.getElementById("loader").classList.add("hidden");
     });
