@@ -3,6 +3,14 @@ document.getElementById("searchResults").classList.add("hidden");
 
 let listDiv = document.getElementById("dataList");
 
+function clearList() {
+  let child = listDiv.lastElementChild;
+  while (child) {
+    listDiv.removeChild(child);
+    child = listDiv.lastElementChild;
+  }
+}
+
 function getCompanyData(x) {
   document.getElementById("loader").classList.remove("hidden");
   document.getElementById("searchResults").classList.remove("hidden");
@@ -17,6 +25,7 @@ function getCompanyData(x) {
     .then(data => {
       let companyList = data;
       console.log(companyList);
+      clearList();
 
       for (let i = 0; i < companyList.length; i++) {
         let li = document.createElement("li");
