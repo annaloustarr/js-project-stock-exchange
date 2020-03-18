@@ -30,7 +30,6 @@ function getCompanyData(x) {
       })
       .then(data => {
         let companyList = data;
-        console.log(companyList);
         makeCompanyList(companyList);
       });
   }
@@ -39,6 +38,9 @@ function getCompanyData(x) {
 // This draws the list
 function makeCompanyList(companyList) {
   clearList();
+
+  // for (let i = 0; i < companyList.length; i++) {
+  //   let mySymbol = companyList[i].symbol;
 
   companyList.map(item => {
     let mySymbol = item.symbol;
@@ -57,7 +59,6 @@ function makeCompanyList(companyList) {
       })
       .then(data => {
         let companyProfile = data.profile;
-        console.log(companyProfile);
 
         let companyName = document.createElement("a");
         companyName.setAttribute("href", `/company.html?symbol=${mySymbol}`);

@@ -20,36 +20,38 @@
   </head>
 
   <body>
-    <div class="page-header">
-      Search Nasdaq Stocks
-    </div>
-    <div class="input-group mb-3 my-input">
-      <input
-        id="myInput"
-        type="text"
-        class="form-control"
-        placeholder="Start typing..."
-        aria-label="Recipient's username"
-        aria-describedby="basic-addon2"
-      />
-      <div class="input-group-append">
-        <button
-          id="searchButton"
-          class="btn btn-outline-secondary"
-          type="button"
-        >
-          Search
-        </button>
-
-        <div id="searchResults" class="search-results">Search Results</div>
-        <div id="loader" class="loader loader-position"></div>
-        <div id="noInput" class="no-search-input">
-          Your search is empty! Type something!
+    <div class="container">
+      <div class="page-header">
+        Search Nasdaq Stocks
+      </div>
+      <div class="input-group mb-3 my-input">
+        <input
+          id="myInput"
+          type="text"
+          class="form-control"
+          placeholder="Start typing..."
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        />
+        <div class="input-group-append">
+          <button
+            id="searchButton"
+            class="btn btn-outline-secondary"
+            type="button"
+          >
+            Search
+          </button>
         </div>
+      </div>
 
-        <div class="resultsList">
-          <ul id="dataList" class="data-list"></ul>
-        </div>
+      <div id="searchResults" class="search-results">Search Results</div>
+      <div id="loader" class="loader loader-position"></div>
+      <div id="noInput" class="no-search-input">
+        Your search is empty! Type something!
+      </div>
+
+      <div class="results-list">
+        <ul id="dataList" class="data-list"></ul>
       </div>
     </div>
 
