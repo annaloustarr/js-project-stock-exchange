@@ -56,7 +56,7 @@ function getCompanyProfile(symbolString) {
     });
 }
 
-// get comapny stock price history and pass it to chart drawing function
+// get company stock price history and pass it to chart drawing function
 function getCompanyStockHistory(symbolString) {
   fetch(
     `https://financialmodelingprep.com/api/v3/historical-price-full/${symbolString}?serietype=line`
@@ -69,6 +69,7 @@ function getCompanyStockHistory(symbolString) {
 
       let datalabelsArray = [];
       let dataPointsArray = [];
+
       for (let i = 0; i < companyStockData.length; i++) {
         let datalabels = companyStockData[i].date;
         datalabelsArray.push(datalabels);
