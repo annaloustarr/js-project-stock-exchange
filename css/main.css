@@ -38,6 +38,12 @@
 .hidden {
   display: none;
 }
+.no-search-input {
+  color: red;
+  position: absolute;
+  left: 300px;
+  top: 72px;
+}
 .search-results {
   position: absolute;
   width: 182px;

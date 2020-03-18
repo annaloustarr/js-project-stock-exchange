@@ -75,8 +75,6 @@ function getCompanyStockHistory(symbolString) {
         let dataPoints = companyStockData[i].close;
         dataPointsArray.push(dataPoints);
       }
-      console.log(datalabelsArray);
-      console.log(dataPointsArray);
 
       drawChart(datalabelsArray, dataPointsArray);
     });
