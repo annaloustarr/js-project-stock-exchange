@@ -48,7 +48,7 @@ function makeCompanyList(companyList) {
     let li = document.createElement("li");
 
     let companySymbol = document.createElement("a");
-    companySymbol.setAttribute("href", `/company.html?symbol=${mySymbol}`);
+    companySymbol.href = `./company.html?symbol=${mySymbol}`;
     companySymbol.textContent = " (" + mySymbol + ")";
 
     fetch(
@@ -61,7 +61,7 @@ function makeCompanyList(companyList) {
         let companyProfile = data.profile;
 
         let companyName = document.createElement("a");
-        companyName.setAttribute("href", `/company.html?symbol=${mySymbol}`);
+        companyName.href = `./company.html?symbol=${mySymbol}`;
         companyName.textContent = companyProfile.companyName;
         companyName.classList.add("company-name");
 
@@ -95,3 +95,35 @@ function makeCompanyList(companyList) {
 document
   .getElementById("searchButton")
   .addEventListener("click", getCompanyData);
+
+// make list for marquee
+
+fetch(`https://financialmodelingprep.com/api/v3/stock/real-time-price`)
+  .then(response => {
+    return response.json();
+  })
+
+  //   keep map here incase I want all 10000+
+  //   stockList.map(item => {
+  //     let companySymbol = item.symbol;
+  //     let companyPrice = item.price;
+  //   });
+
+  .then(data => {
+    let stockList = data.stockList;
+    let marqueeDiv = document.getElementById("marqueeList");
+    for (let i = 0; i < 250; i++) {
+      let companySymbol = stockList[i].symbol;
+      let companyPrice = stockList[i].price;
+
+      let li = document.createElement("li");
+      let symbolText = document.createElement("span");
+      symbolText.innerHTML = companySymbol;
+      let priceText = document.createElement("span");
+      priceText.innerHTML = " $" + companyPrice;
+      priceText.classList.add("lightgreen");
+      li.append(symbolText, priceText);
+
+      marqueeDiv.appendChild(li);
+    }
+  });

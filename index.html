@@ -2,7 +2,13 @@
 <html>
   <head>
     <title>Stock Exchange</title>
-
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      sizes="16x16"
+      href="Stocklogo/favicon.ico"
+    />
+    <link rel="apple-touch-icon" href="Stocklogo/favicon.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -20,9 +26,16 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="marquee">
+      <div class="marquee__content">
+        <ul id="marqueeList" class="list-inline"></ul>
+      </div>
+    </div>
+
+    <div class="container shadow">
       <div class="page-header">
-        Search Nasdaq Stocks
+        <img src="Stocklogo/favicon.ico" />
+        <span class="page-header-title">Search Nasdaq Stocks</span>
       </div>
       <div class="input-group mb-3 my-input">
         <input
@@ -43,11 +56,12 @@
           </button>
         </div>
       </div>
-
-      <div id="searchResults" class="search-results">Search Results</div>
-      <div id="loader" class="loader loader-position"></div>
-      <div id="noInput" class="no-search-input">
-        Your search is empty! Type something!
+      <div>
+        <div id="searchResults" class="search-results">Search Results</div>
+        <div id="loader" class="loader"></div>
+        <div id="noInput" class="no-search-input">
+          Your search is empty! Type something!
+        </div>
       </div>
 
       <div class="results-list">
