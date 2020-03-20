@@ -24,6 +24,7 @@ function getCompanyProfile(symbolString) {
     })
     .then(data => {
       let companyProfile = data.profile;
+      console.log(companyProfile);
 
       let companyImage = companyProfile.image;
       let companyName = companyProfile.companyName;
@@ -31,6 +32,7 @@ function getCompanyProfile(symbolString) {
       let companyLink = companyProfile.website;
       let companyStockPrices = companyProfile.price;
       let companyChanges = companyProfile.changes;
+      let companyChangesPercentage = companyProfile.changesPercentage;
 
       let imageSpan = document.getElementById("companyLogo");
       let myImg = document.createElement("IMG");
@@ -43,7 +45,7 @@ function getCompanyProfile(symbolString) {
       document.getElementById("companyName").innerHTML = companyName;
       document.getElementById("stockPrice").innerHTML =
         "Stock Price: $" + companyStockPrices;
-      let changesText = "(" + companyChanges + "%)";
+      let changesText = companyChangesPercentage;
       document.getElementById("stockChanges").innerHTML = changesText;
       document.getElementById("description").innerHTML = companyDescription;
 

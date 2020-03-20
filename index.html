@@ -33,25 +33,11 @@
         <img src="businesslogo/favicon.ico" />
         <span class="page-header-title">Search Nasdaq Stocks</span>
       </div>
-      <div class="input-group mb-3 my-input">
-        <input
-          id="myInput"
-          type="text"
-          class="form-control"
-          placeholder="Start typing..."
-          aria-label="Recipient's username"
-          aria-describedby="basic-addon2"
-        />
-        <div class="input-group-append">
-          <button
-            id="searchButton"
-            class="btn btn-outline-secondary"
-            type="button"
-          >
-            Search
-          </button>
-        </div>
-      </div>
+
+      <!-- form -->
+      <div id="form" class="input-group mb-3 my-input"></div>
+
+      <!-- results -->
       <div>
         <div id="searchResults" class="search-results">Search Results</div>
         <div id="loader" class="loader"></div>
@@ -65,7 +51,8 @@
       </div>
     </div>
 
-    <script src="js/main.js"></script>
     <script src="js/marquee.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

@@ -45,12 +45,6 @@ function makeCompanyList(companyList) {
   companyList.map(item => {
     let mySymbol = item.symbol;
 
-    let li = document.createElement("li");
-
-    let companySymbol = document.createElement("a");
-    companySymbol.href = `./company.html?symbol=${mySymbol}`;
-    companySymbol.textContent = " (" + mySymbol + ")";
-
     fetch(
       `https://financialmodelingprep.com/api/v3/company/profile/${mySymbol}`
     )
@@ -60,6 +54,12 @@ function makeCompanyList(companyList) {
       .then(data => {
         let companyProfile = data.profile;
 
+        let li = document.createElement("li");
+
+        let companySymbol = document.createElement("a");
+        companySymbol.href = `./company.html?symbol=${mySymbol}`;
+        companySymbol.textContent = " (" + mySymbol + ")";
+
         let companyName = document.createElement("a");
         companyName.href = `./company.html?symbol=${mySymbol}`;
         companyName.textContent = companyProfile.companyName;
@@ -67,6 +67,7 @@ function makeCompanyList(companyList) {
 
         let companyImage = companyProfile.image;
         let companyChanges = companyProfile.changes;
+        let companyChangesPercentage = companyProfile.changesPercentage;
         companyChanges.id = "stockChanges";
         companyChanges.class = "changes-size";
 
@@ -75,7 +76,7 @@ function makeCompanyList(companyList) {
         myImg.setAttribute("height", "25px");
 
         let changesText = document.createElement("span");
-        changesText.innerHTML = "(" + companyChanges + "%)";
+        changesText.innerHTML = companyChangesPercentage;
 
         if (companyChanges >= 0) {
           changesText.classList.add("lightgreen");
