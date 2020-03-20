@@ -58,6 +58,7 @@ function getCompanyProfile(symbolString) {
 
 // get company stock price history and pass it to chart drawing function
 function getCompanyStockHistory(symbolString) {
+  document.getElementById("loader2").classList.remove("hidden");
   fetch(
     `https://financialmodelingprep.com/api/v3/historical-price-full/${symbolString}?serietype=line`
   )
