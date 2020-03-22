@@ -23,6 +23,7 @@
     />
 
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/autocomplete.css" />
   </head>
 
   <body>
@@ -42,28 +43,29 @@
     <script src="js/marquee.js"></script>
     <script src="js/form.js"></script>
     <script src="js/results.js"></script>
-    <script
-      src = "js/main.js"></script>
-    </script>
-    <script>
+    <script src="js/autosearch.js"></script>
+    <script src="js/main.js"></script>
+    <!-- <script>
       document
         .createElement("button")
         .addEventListener("click", myResults.getCompanyData);
-    </script>
+    </script> -->
 
-    <script>
-      // (async function() {
-      //   let myMarquee = new Marquee(document.getElementById("marquee"));
-      //   myMarquee.createMarqueeElement();
-      //   myMarquee.createMarqueeList();
-      //   let myForm = new Form(document.getElementById("form"));
-      //   myForm.createInputElement();
-      //   let myResults = new Results(document.getElementById("results"));
-      //   myResults.createResultsElement();
-      //   myForm.getCompanyData(companyList => {
-      //     myResults.makeCompanyList(companyList);
-      //   });
-      // });
-    </script>
+    <!-- <script>
+      (async function() {
+        let myMarquee = new Marquee(document.getElementById("marquee"));
+        myMarquee.createMarqueeElement();
+        myMarquee.createMarqueeList();
+        let myForm = new Form(document.getElementById("form"));
+        myForm.createInputElement();
+        let myResults = new Results(document.getElementById("results"));
+        myResults.createResultsElement();
+
+        myForm.getCompanyData(companyList => {
+        myResults.makeCompanyList(companyList);
+        });
+
+      })();
+    </script> -->
   </body>
 </html>

@@ -1,11 +1,6 @@
-// document.getElementById("loader").classList.add("hidden");
-// document.getElementById("searchResults").classList.add("hidden");
-// document.getElementById("noInput").classList.add("hidden");
-
-let listDiv = document.getElementById("dataList");
-
 // Clears list when called before refreshing list
 function clearList() {
+  let listDiv = document.getElementById("dataList");
   let child = listDiv.lastElementChild;
   while (child) {
     listDiv.removeChild(child);
@@ -54,6 +49,7 @@ function makeCompanyList(companyList) {
       .then(data => {
         let companyProfile = data.profile;
 
+        let listDiv = document.getElementById("dataList");
         let li = document.createElement("li");
 
         let companySymbol = document.createElement("a");
