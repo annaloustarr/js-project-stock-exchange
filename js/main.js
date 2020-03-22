@@ -1,6 +1,6 @@
-document.getElementById("loader").classList.add("hidden");
-document.getElementById("searchResults").classList.add("hidden");
-document.getElementById("noInput").classList.add("hidden");
+// document.getElementById("loader").classList.add("hidden");
+// document.getElementById("searchResults").classList.add("hidden");
+// document.getElementById("noInput").classList.add("hidden");
 
 let listDiv = document.getElementById("dataList");
 
@@ -90,8 +90,6 @@ function makeCompanyList(companyList) {
   });
   document.getElementById("loader").classList.add("hidden");
 }
-
-// make array of all the companies
 
 document
   .getElementById("searchButton")

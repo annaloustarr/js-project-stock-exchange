@@ -34,25 +34,36 @@
         <span class="page-header-title">Search Nasdaq Stocks</span>
       </div>
 
-      <!-- form -->
       <div id="form" class="input-group mb-3 my-input"></div>
 
-      <!-- results -->
-      <div>
-        <div id="searchResults" class="search-results">Search Results</div>
-        <div id="loader" class="loader"></div>
-        <div id="noInput" class="no-search-input">
-          Your search is empty! Type something!
-        </div>
-      </div>
-
-      <div class="results-list">
-        <ul id="dataList" class="data-list"></ul>
-      </div>
+      <div id="results"></div>
     </div>
 
     <script src="js/marquee.js"></script>
     <script src="js/form.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/results.js"></script>
+    <script
+      src = "js/main.js"></script>
+    </script>
+    <script>
+      document
+        .createElement("button")
+        .addEventListener("click", myResults.getCompanyData);
+    </script>
+
+    <script>
+      // (async function() {
+      //   let myMarquee = new Marquee(document.getElementById("marquee"));
+      //   myMarquee.createMarqueeElement();
+      //   myMarquee.createMarqueeList();
+      //   let myForm = new Form(document.getElementById("form"));
+      //   myForm.createInputElement();
+      //   let myResults = new Results(document.getElementById("results"));
+      //   myResults.createResultsElement();
+      //   myForm.getCompanyData(companyList => {
+      //     myResults.makeCompanyList(companyList);
+      //   });
+      // });
+    </script>
   </body>
 </html>

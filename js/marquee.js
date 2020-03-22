@@ -1,5 +1,3 @@
-let marqueeDiv = document.getElementById("marquee");
-
 class Marquee {
   constructor(element) {
     this.element = element;
@@ -43,7 +41,7 @@ class Marquee {
   }
 }
 
-let myMarquee = new Marquee(marqueeDiv);
+let myMarquee = new Marquee(document.getElementById("marquee"));
 myMarquee.createMarqueeElement();
 myMarquee.createMarqueeList();
 
