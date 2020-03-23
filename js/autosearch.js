@@ -1,3 +1,4 @@
+// autocomplete function taken from w3e schools!
 function autocomplete(inp, arr) {
   let currentFocus;
   /*execute a function when someone writes in the text field:*/
@@ -83,16 +84,45 @@ function autocomplete(inp, arr) {
   });
 }
 
-fetch(
-  `https://financialmodelingprep.com/api/v3/search?query=&limit=5000&exchange=NASDAQ`
-)
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    let companyList = data;
-    console.log(data);
+// retrieve list of companies and call autocomplete function
+function retrieveCompanies() {
+  console.log("working?");
+  fetch(
+    `https://financialmodelingprep.com/api/v3/search?query=&limit=5000&exchange=NASDAQ`
+  )
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      let companyList = data;
 
-    let companies = companyList.map(item => item.name);
-    autocomplete(document.getElementById("myInput"), companies);
-  });
+      let companies = companyList.map(item => item.name);
+      autocomplete(document.getElementById("myInput"), companies);
+    });
+}
+// debounce function taken from levelup.gitconnected!
+function debounce(func, wait, immediate) {
+  var timeout;
+  console.log("im in bounce");
+
+  return function executedFunction() {
+    console.log("whit is theis?");
+    var context = this;
+    var args = arguments;
+
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+
+    var callNow = immediate && !timeout;
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(later, wait);
+
+    if (callNow) func.apply(context, args);
+  };
+}
+
+debounce(retrieveCompanies(), 2000);

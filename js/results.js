@@ -49,7 +49,6 @@ class Results {
   // This draws the list
   makeCompanyList(companyList) {
     this.clearList();
-    console.log(companyList);
     // for (let i = 0; i < companyList.length; i++) {
     //   let mySymbol = companyList[i].symbol;
 
@@ -64,7 +63,8 @@ class Results {
         })
         .then(data => {
           let companyProfile = data.profile;
-          console.log(companyProfile);
+
+          let listDiv = document.getElementById("dataList");
           let li = document.createElement("li");
 
           let companySymbol = document.createElement("a");
@@ -79,8 +79,8 @@ class Results {
           let companyImage = companyProfile.image;
           let companyChanges = companyProfile.changes;
           let companyChangesPercentage = companyProfile.changesPercentage;
-          companyChanges.id = "stockChanges";
-          companyChanges.class = "changes-size";
+          // companyChanges.id = "stockChanges";
+          // companyChanges.class = "changes-size";
 
           let myImg = document.createElement("IMG");
           myImg.setAttribute("src", companyImage);
@@ -102,8 +102,5 @@ class Results {
     document.getElementById("loader").classList.add("hidden");
   }
 }
-
 let myResults = new Results(document.getElementById("results"));
 myResults.createResultsElement();
-// myResults.getCompanyData();
-// myResults.makeCompanyList();
