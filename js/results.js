@@ -68,20 +68,34 @@ class Results {
           let listDiv = document.getElementById("dataList");
           let li = document.createElement("li");
 
+          let inputFromUser = document.getElementById("myInput");
+          let term = inputFromUser.value;
+
           let companySymbol = document.createElement("a");
           companySymbol.href = `./company.html?symbol=${mySymbol}`;
-          companySymbol.textContent = " (" + mySymbol + ")";
+          let symbolString = " (" + mySymbol + ")";
+
+          let highlightSS = symbolString.replace(
+            new RegExp(term, "gi"),
+            match => `<span class="yellow">${match}</span>`
+          );
+
+          companySymbol.innerHTML = highlightSS;
 
           let companyName = document.createElement("a");
           companyName.href = `./company.html?symbol=${mySymbol}`;
-          companyName.textContent = companyProfile.companyName;
+          let nameString = companyProfile.companyName;
+
+          let highlightNS = nameString.replace(
+            new RegExp(term, "gi"),
+            match => `<span class="yellow">${match}</span>`
+          );
+          companyName.innerHTML = highlightNS;
           companyName.classList.add("company-name");
 
           let companyImage = companyProfile.image;
           let companyChanges = companyProfile.changes;
           let companyChangesPercentage = companyProfile.changesPercentage;
-          // companyChanges.id = "stockChanges";
-          // companyChanges.class = "changes-size";
 
           let myImg = document.createElement("IMG");
           myImg.setAttribute("src", companyImage);
@@ -98,6 +112,8 @@ class Results {
 
           li.append(myImg, companyName, companySymbol, changesText);
           listDiv.appendChild(li);
+
+          // this.highlightText();
         });
     });
     document.getElementById("loader").classList.add("hidden");

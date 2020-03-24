@@ -28,6 +28,7 @@ class Form {
     theButton.classList.add("btn-outline-secondary");
     theButton.textContent = "Search";
     theButton.addEventListener("click", this.getCompanyData);
+    // theButton.addEventListener("click", myResults.highlightText);
 
     myButton.appendChild(theButton);
 

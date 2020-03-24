@@ -23,9 +23,9 @@ function autocomplete(inp, arr) {
     for (i = 0; i < arr.length; i++) {
       if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
         b = document.createElement("DIV");
-        b.textContent = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-        b.textContent += arr[i].substr(val.length);
-        b.textContent += "<input type='hidden' value='" + arr[i] + "'>";
+        b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+        b.innerHTML += arr[i].substr(val.length);
+        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
 
         b.addEventListener("click", function(e) {
           inp.value = this.getElementsByTagName("input")[0].value;
