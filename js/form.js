@@ -12,6 +12,8 @@ class Form {
     myInput.id = "myInput";
     myInput.type = "text";
     myInput.placeholder = "Start typing...";
+    myInput.addEventListener("focus", this.clearInput);
+    window.addEventListener("load", this.clearInput);
 
     this.element.appendChild(myInput);
 
@@ -52,6 +54,14 @@ class Form {
           let companyList = data;
           myResults.makeCompanyList(companyList);
         });
+    }
+  }
+
+  // clear input onfocus
+  clearInput() {
+    let inputFromUser = document.getElementById("myInput");
+    if (inputFromUser.value != "") {
+      inputFromUser.value = "";
     }
   }
 }

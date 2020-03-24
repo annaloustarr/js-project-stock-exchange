@@ -123,6 +123,7 @@ body {
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
+  behavior: scroll;
 }
 
 .marquee-content {

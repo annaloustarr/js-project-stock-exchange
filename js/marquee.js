@@ -29,9 +29,9 @@ class Marquee {
 
           let li = document.createElement("li");
           let symbolText = document.createElement("span");
-          symbolText.innerHTML = companySymbol;
+          symbolText.textContent = companySymbol;
           let priceText = document.createElement("span");
-          priceText.innerHTML = " $" + companyPrice;
+          priceText.textContent = ` $${companyPrice}`;
           priceText.classList.add("lightgreen");
           li.append(symbolText, priceText);
 

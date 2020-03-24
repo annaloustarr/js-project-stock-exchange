@@ -49,6 +49,7 @@ class Results {
   // This draws the list
   makeCompanyList(companyList) {
     this.clearList();
+
     // for (let i = 0; i < companyList.length; i++) {
     //   let mySymbol = companyList[i].symbol;
 
@@ -87,7 +88,7 @@ class Results {
           myImg.setAttribute("height", "25px");
 
           let changesText = document.createElement("span");
-          changesText.innerHTML = companyChangesPercentage;
+          changesText.textContent = companyChangesPercentage;
 
           if (companyChanges >= 0) {
             changesText.classList.add("lightgreen");
@@ -102,5 +103,6 @@ class Results {
     document.getElementById("loader").classList.add("hidden");
   }
 }
+
 let myResults = new Results(document.getElementById("results"));
 myResults.createResultsElement();
