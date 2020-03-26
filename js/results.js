@@ -100,7 +100,7 @@ class Results {
 
           let myImg = document.createElement("IMG");
           myImg.setAttribute("src", companyImage);
-          myImg.setAttribute("height", "25px");
+          myImg.setAttribute("height", "30px");
 
           let changesText = document.createElement("span");
           changesText.textContent = companyChangesPercentage;
@@ -123,7 +123,7 @@ class Results {
           theCompareButton.classList.add("half-curved");
           theCompareButton.textContent = "Compare";
           theCompareButton.addEventListener("click", () => {
-            this.consoleLog(companyProfile);
+            this.compareButtons(mySymbol, companyProfile);
           });
           compareButton.appendChild(theCompareButton);
 
@@ -141,8 +141,33 @@ class Results {
     document.getElementById("loader").classList.add("hidden");
   }
 
-  consoleLog(companyProfile) {
+  compareButtons(mySymbol, companyProfile) {
     console.log(companyProfile);
+
+    let compareDiv = document.getElementById("compareDiv");
+    compareDiv.classList.add("compare-div");
+
+    let companyButton = document.createElement("span");
+    companyButton.classList.add("company-button");
+    companyButton.id = "companyButton";
+
+    let theCompanyButton = document.createElement("button");
+    theCompanyButton.id = `${mySymbol}`;
+    theCompanyButton.type = "button";
+    theCompanyButton.classList.add("btn");
+    theCompanyButton.classList.add("btn-outline-secondary");
+    theCompanyButton.classList.add("compare-button");
+    theCompanyButton.textContent = `${mySymbol} x`;
+    theCompanyButton.addEventListener("click", () => {
+      this.removeCompareButtons(mySymbol, companyProfile);
+    });
+    companyButton.appendChild(theCompanyButton);
+    compareDiv.appendChild(companyButton);
+  }
+  removeCompareButtons(mySymbol, companyProfile) {
+    let childButton = document.getElementById(`${mySymbol}`);
+    let elem = document.getElementById("companyButton");
+    childButton.parentNode.removeChild(childButton);
   }
 }
 

@@ -64,7 +64,7 @@ body {
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 72px;
   color: #373a3c;
 }
@@ -72,7 +72,7 @@ body {
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 12px;
   line-height: 20px;
   color: #5d4fe0;
   padding-left: 0px;
@@ -80,7 +80,7 @@ body {
 }
 .data-list li {
   padding: 10px;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px #ced4da;
 }
 .company-title {
   margin: 20px;
@@ -89,7 +89,7 @@ body {
   padding: 20px;
 }
 .company-name {
-  padding: 20px;
+  padding: 14px;
   color: purple;
   font-size: 20px;
 }
@@ -173,4 +173,29 @@ body {
   border-bottom-left-radius: 0;
   line-height: 1.3;
   font-size: 12px;
+  background-color: floralwhite;
+}
+.compare-div {
+  width: 100%;
+  display: inline-block;
+  border: 1px solid transparent;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+  background-clip: padding-box;
+  /* border: 1px solid #ced4da;
+  border-radius: 0.25rem; */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.company-button {
+  padding: 10px;
+}
+
+.compare-button {
+  width: 80px;
+  float: left;
+  line-height: 1.3;
+  font-size: 12px;
+  background-color: floralwhite;
+  margin: 4px;
 }
