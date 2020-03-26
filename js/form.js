@@ -31,7 +31,6 @@ class Form {
     // theButton.addEventListener("click", myResults.highlightText);
 
     myButton.appendChild(theButton);
-
     this.element.appendChild(myButton);
   }
 
