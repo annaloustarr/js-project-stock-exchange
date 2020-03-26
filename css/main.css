@@ -159,3 +159,13 @@ body {
 .yellow {
   background-color: yellow;
 }
+.compare-button {
+  float: right;
+}
+.half-curved {
+  float: right;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  line-height: 1.3;
+  font-size: 12px;
+}

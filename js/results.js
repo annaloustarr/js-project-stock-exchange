@@ -1,6 +1,7 @@
 class Results {
   constructor(element) {
     this.element = element;
+    this.companyProfile = [];
   }
 
   // class method to make input element in html
@@ -69,14 +70,14 @@ class Results {
           let li = document.createElement("li");
 
           let inputFromUser = document.getElementById("myInput");
-          let term = inputFromUser.value;
+          let searchTerm = inputFromUser.value;
 
           let companySymbol = document.createElement("a");
           companySymbol.href = `./company.html?symbol=${mySymbol}`;
           let symbolString = " (" + mySymbol + ")";
 
           let highlightSS = symbolString.replace(
-            new RegExp(term, "gi"),
+            new RegExp(searchTerm, "gi"),
             match => `<span class="yellow">${match}</span>`
           );
 
@@ -87,7 +88,7 @@ class Results {
           let nameString = companyProfile.companyName;
 
           let highlightNS = nameString.replace(
-            new RegExp(term, "gi"),
+            new RegExp(searchTerm, "gi"),
             match => `<span class="yellow">${match}</span>`
           );
           companyName.innerHTML = highlightNS;
@@ -110,13 +111,38 @@ class Results {
             changesText.classList.add("red");
           }
 
-          li.append(myImg, companyName, companySymbol, changesText);
-          listDiv.appendChild(li);
+          let compareButton = document.createElement("span");
+          compareButton.classList.add("compare-button");
+          compareButton.id = "compareButton";
 
-          // this.highlightText();
+          let theCompareButton = document.createElement("button");
+          theCompareButton.id = `${mySymbol}compareButton`;
+          theCompareButton.type = "button";
+          theCompareButton.classList.add("btn");
+          theCompareButton.classList.add("btn-outline-secondary");
+          theCompareButton.classList.add("half-curved");
+          theCompareButton.textContent = "Compare";
+          theCompareButton.addEventListener("click", () => {
+            this.consoleLog(companyProfile);
+          });
+          compareButton.appendChild(theCompareButton);
+
+          li.append(
+            myImg,
+            companyName,
+            companySymbol,
+            changesText,
+            theCompareButton
+          );
+          listDiv.appendChild(li);
         });
     });
+
     document.getElementById("loader").classList.add("hidden");
+  }
+
+  consoleLog(companyProfile) {
+    console.log(companyProfile);
   }
 }
 
