@@ -26,6 +26,7 @@ class Form {
     theButton.type = "button";
     theButton.classList.add("btn");
     theButton.classList.add("btn-outline-secondary");
+    theButton.classList.add("purple-button");
     theButton.textContent = "Search";
     theButton.addEventListener("click", this.getCompanyData);
     // theButton.addEventListener("click", myResults.highlightText);

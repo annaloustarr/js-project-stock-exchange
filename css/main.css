@@ -199,3 +199,9 @@ body {
   background-color: floralwhite;
   margin: 4px;
 }
+.purple-button {
+  background-color: purple;
+}
+.the-link {
+  float: right;
+}
