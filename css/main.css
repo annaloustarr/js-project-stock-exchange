@@ -188,7 +188,7 @@ body {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .company-button {
-  padding: 10px;
+  padding: 1px;
 }
 
 .compare-button {
@@ -204,4 +204,6 @@ body {
 }
 .the-link {
   float: right;
+  padding: 8px;
+  color: purple;
 }

@@ -100,7 +100,7 @@ class Results {
 
           let myImg = document.createElement("IMG");
           myImg.setAttribute("src", companyImage);
-          myImg.setAttribute("height", "30px");
+          myImg.setAttribute("width", "40px");
 
           let changesText = document.createElement("span");
           changesText.textContent = companyChangesPercentage;
@@ -141,73 +141,6 @@ class Results {
     document.getElementById("loader").classList.add("hidden");
   }
 }
-class Compare {
-  constructor(element) {
-    this.element = element;
-    this.count = 0;
-  }
-  compareButtons(mySymbol, companyProfile) {
-    this.count += 1;
-    document.getElementById(
-      "companyLink"
-    ).textContent = `compare ${this.count} companies`;
-    console.log(this.count);
-    console.log(companyProfile);
-
-    document.getElementById("companyLink").classList.remove("hidden");
-    this.element.classList.add("compare-div");
-
-    let companyButton = document.createElement("span");
-    companyButton.classList.add("company-button");
-    companyButton.id = "companyButton";
-
-    let theCompanyButton = document.createElement("button");
-    theCompanyButton.id = `${mySymbol}`;
-    theCompanyButton.type = "button";
-    theCompanyButton.classList.add("btn");
-    theCompanyButton.classList.add("btn-outline-secondary");
-    theCompanyButton.classList.add("compare-button");
-    theCompanyButton.textContent = `${mySymbol} x`;
-    theCompanyButton.addEventListener("click", () => {
-      this.removeCompareButtons(mySymbol, companyProfile);
-    });
-    companyButton.appendChild(theCompanyButton);
-    this.element.appendChild(companyButton);
-  }
-  compareLink() {
-    let companyLink = document.createElement("span");
-    companyLink.classList.add("company-link");
-    // companyLink.classList.add("hidden");
-
-    let theCompanyLink = document.createElement("a");
-    // theCompanyLink.href = `./compare.html?symbols=${mySymbol},${mySymbol},${mySymbol}`;
-    theCompanyLink.href = `./compare.html?symbols=`;
-    theCompanyLink.id = "theCompanyLink";
-    theCompanyLink.classList.add("the-link");
-    theCompanyLink.classList.add("hidden");
-    theCompanyLink.id = "companyLink";
-    theCompanyLink.textContent = `compare companies`;
-    companyLink.appendChild(theCompanyLink);
-    this.element.appendChild(companyLink);
-  }
-
-  removeCompareButtons(mySymbol, companyProfile) {
-    let childButton = document.getElementById(`${mySymbol}`);
-    let elem = document.getElementById("companyButton");
-    childButton.parentNode.removeChild(childButton);
-    this.count -= 1;
-    document.getElementById(
-      "companyLink"
-    ).textContent = `compare ${this.count} companies`;
-    if (this.count === 0) {
-      document.getElementById("companyLink").classList.add("hidden");
-    }
-    console.log(this.count);
-  }
-}
 
 let myResults = new Results(document.getElementById("results"));
 myResults.createResultsElement();
-
-let myCompare = new Compare(document.getElementById("compareDiv"));
-myCompare.compareLink();
