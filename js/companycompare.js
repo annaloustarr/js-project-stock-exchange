@@ -5,10 +5,10 @@ class Companycompare {
   }
 
   createCompanyElement() {
+    this.element.classList.add("side-by-side");
     let myCompanyTitle = document.createElement("div");
     myCompanyTitle.classList.add("company-title");
     this.element.appendChild(myCompanyTitle);
-    console.log(this.element);
 
     let myCompanyLogo = document.createElement("span");
     myCompanyLogo.id = `companyLogo${this.urlString}`;
@@ -35,11 +35,11 @@ class Companycompare {
 
     let myDescription = document.createElement("div");
     myDescription.id = `description${this.urlString}`;
-    myDescription.classList.add("description");
+    myDescription.classList.add("description2");
     this.element.appendChild(myDescription);
 
     let myLoader = document.createElement("div");
-    myLoader.id = "loader2";
+    myLoader.id = `loader2${this.urlString}`;
     myLoader.classList.add("loader2");
     this.element.appendChild(myLoader);
 
@@ -57,8 +57,9 @@ class Companycompare {
 
   // get company profile and fill html elements
   getCompanyProfile(symbolString) {
-    console.log(symbolString);
-    document.getElementById("loader2").classList.remove("hidden");
+    document
+      .getElementById(`loader2${this.urlString}`)
+      .classList.remove("hidden");
     fetch(
       `https://financialmodelingprep.com/api/v3/company/profile/${symbolString}`
     )
@@ -67,7 +68,6 @@ class Companycompare {
       })
       .then(data => {
         let companyProfile = data.profile;
-        console.log(companyProfile);
 
         let companyImage = companyProfile.image;
         let companyName = companyProfile.companyName;
@@ -80,7 +80,7 @@ class Companycompare {
         let imageSpan = document.getElementById(`companyLogo${this.urlString}`);
         let myImg = document.createElement("IMG");
         myImg.setAttribute("src", companyImage);
-        myImg.setAttribute("height", "50px");
+        myImg.setAttribute("width", "40px");
         myImg.setAttribute("alt", "The logo");
         imageSpan.appendChild(myImg);
 
@@ -106,13 +106,17 @@ class Companycompare {
             .getElementById(`stockChanges${this.urlString}`)
             .classList.add("red");
         }
-        document.getElementById("loader2").classList.add("hidden");
+        document
+          .getElementById(`loader2${this.urlString}`)
+          .classList.add("hidden");
       });
   }
 
   // get company stock price history and pass it to chart drawing function
   getCompanyStockHistory(symbolString) {
-    document.getElementById("loader2").classList.remove("hidden");
+    document
+      .getElementById(`loader2${this.urlString}`)
+      .classList.remove("hidden");
     fetch(
       `https://financialmodelingprep.com/api/v3/historical-price-full/${symbolString}?serietype=line`
     )
@@ -154,16 +158,16 @@ class Companycompare {
           }
         ]
       },
-      options: {}
+      options: {
+        legend: {
+          display: false
+        }
+      }
     });
   }
 }
 
 function windowOnLoad() {
-  // let usp = new URLSearchParams(document.location.search.substring(1));
-  // usp.get(symbol).toString();
-  // console.log(usp.getAll("symbol"));
-
   let qs = document.location.search.substring(
     1,
     document.location.search.length
@@ -179,20 +183,17 @@ function windowOnLoad() {
     symbolString1
   );
   myNewCompany.createCompanyElement();
-  console.log(symbolString1);
 
   let myNewCompanytwo = new Companycompare(
     document.getElementById("companytwo"),
     symbolString2
   );
   myNewCompanytwo.createCompanyElement();
-  console.log(symbolString2);
 
   let myNewCompanythree = new Companycompare(
     document.getElementById("companythree"),
     symbolString3
   );
   myNewCompanythree.createCompanyElement();
-  console.log(symbolString3);
 }
 windowOnLoad();
