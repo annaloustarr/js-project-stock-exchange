@@ -6,31 +6,31 @@ class Results {
 
   // class method to make input element in html
   createResultsElement() {
-    let myResults = document.createElement("div");
-    myResults.classList.add("search-results");
-    myResults.id = "searchResults";
-    myResults.textContent = "Search Results";
-    this.element.appendChild(myResults);
+    let stockResults = document.createElement("div");
+    stockResults.classList.add("search-results");
+    stockResults.id = "searchResults";
+    stockResults.textContent = "Search Results";
+    this.element.appendChild(stockResults);
 
-    let myLoader = document.createElement("div");
-    myLoader.classList.add("loader");
-    myLoader.id = "loader";
-    this.element.appendChild(myLoader);
+    let spinner = document.createElement("div");
+    spinner.classList.add("loader");
+    spinner.id = "loader";
+    this.element.appendChild(spinner);
 
-    let myError = document.createElement("div");
-    myError.classList.add("no-search-input");
-    myError.id = "noInput";
-    myError.textContent = "Your search is empty! Type something!";
-    this.element.appendChild(myError);
+    let searchError = document.createElement("div");
+    searchError.classList.add("no-search-input");
+    searchError.id = "noInput";
+    searchError.textContent = "Your search is empty! Type something!";
+    this.element.appendChild(searchError);
 
-    let myResultsList = document.createElement("div");
-    myResultsList.classList.add("results-list");
-    myResultsList.id = "resultsList";
+    let resultsList = document.createElement("div");
+    resultsList.classList.add("results-list");
+    resultsList.id = "resultsList";
     let resultsUL = document.createElement("ul");
     resultsUL.classList.add("data-list");
     resultsUL.id = "dataList";
-    myResultsList.appendChild(resultsUL);
-    this.element.appendChild(myResultsList);
+    resultsList.appendChild(resultsUL);
+    this.element.appendChild(resultsList);
 
     document.getElementById("loader").classList.add("hidden");
     document.getElementById("searchResults").classList.add("hidden");
@@ -50,20 +50,16 @@ class Results {
   // This draws the list
   makeCompanyList(companyList) {
     this.clearList();
-
-    // for (let i = 0; i < companyList.length; i++) {
-    //   let mySymbol = companyList[i].symbol;
-
-    companyList.map(item => {
-      let mySymbol = item.symbol;
+    companyList.map((item) => {
+      let companySymbol = item.symbol;
 
       fetch(
-        `https://financialmodelingprep.com/api/v3/company/profile/${mySymbol}`
+        `https://financialmodelingprep.com/api/v3/company/profile/${companySymbol}?apikey=${apiKey}`
       )
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
+          //destructuring
+          // let {image, changes, changesPercentage, companyName} = data.profile
           let companyProfile = data.profile;
 
           let listDiv = document.getElementById("dataList");
@@ -73,23 +69,23 @@ class Results {
           let searchTerm = inputFromUser.value;
 
           let companySymbol = document.createElement("a");
-          companySymbol.href = `./company.html?symbol=${mySymbol}`;
-          let symbolString = " (" + mySymbol + ")";
+          companySymbol.href = `./company.html?symbol=${companySymbol}`;
+          let symbolString = " (" + companySymbol + ")";
 
           let highlightSS = symbolString.replace(
             new RegExp(searchTerm, "gi"),
-            match => `<span class="yellow">${match}</span>`
+            (match) => `<span class="yellow">${match}</span>`
           );
 
           companySymbol.innerHTML = highlightSS;
 
           let companyName = document.createElement("a");
-          companyName.href = `./company.html?symbol=${mySymbol}`;
+          companyName.href = `./company.html?symbol=${companySymbol}`;
           let nameString = companyProfile.companyName;
 
           let highlightNS = nameString.replace(
             new RegExp(searchTerm, "gi"),
-            match => `<span class="yellow">${match}</span>`
+            (match) => `<span class="yellow">${match}</span>`
           );
           companyName.innerHTML = highlightNS;
           companyName.classList.add("company-name");
@@ -98,9 +94,9 @@ class Results {
           let companyChanges = companyProfile.changes;
           let companyChangesPercentage = companyProfile.changesPercentage;
 
-          let myImg = document.createElement("IMG");
-          myImg.setAttribute("src", companyImage);
-          myImg.setAttribute("width", "40px");
+          let logoImg = document.createElement("IMG");
+          logoImg.setAttribute("src", companyImage);
+          logoImg.setAttribute("width", "40px");
 
           let changesText = document.createElement("span");
           changesText.textContent = companyChangesPercentage;
@@ -111,28 +107,28 @@ class Results {
             changesText.classList.add("red");
           }
 
-          let compareButton = document.createElement("span");
-          compareButton.classList.add("compare-button");
-          compareButton.id = "compareButton";
+          let compareButtonSpan = document.createElement("span");
+          compareButtonSpan.classList.add("compare-button");
+          compareButtonSpan.id = "compareButton";
 
-          let theCompareButton = document.createElement("button");
-          theCompareButton.id = `${mySymbol}compareButton`;
-          theCompareButton.type = "button";
-          theCompareButton.classList.add("btn");
-          theCompareButton.classList.add("btn-outline-secondary");
-          theCompareButton.classList.add("half-curved");
-          theCompareButton.textContent = "Compare";
-          theCompareButton.addEventListener("click", () => {
-            myCompare.compareButtons(mySymbol, companyProfile);
+          let compareButton = document.createElement("button");
+          compareButton.id = `${companySymbol}compareButton`;
+          compareButton.type = "button";
+          compareButton.classList.add("btn");
+          compareButton.classList.add("btn-outline-secondary");
+          compareButton.classList.add("half-curved");
+          compareButton.textContent = "Compare";
+          compareButton.addEventListener("click", () => {
+            comparing.compareButtons(companySymbol, companyProfile);
           });
-          compareButton.appendChild(theCompareButton);
+          compareButtonSpan.appendChild(compareButton);
 
           li.append(
-            myImg,
+            logoImg,
             companyName,
             companySymbol,
             changesText,
-            theCompareButton
+            compareButton
           );
           listDiv.appendChild(li);
         });
@@ -142,5 +138,5 @@ class Results {
   }
 }
 
-let myResults = new Results(document.getElementById("results"));
-myResults.createResultsElement();
+let companyResults = new Results(document.getElementById("results"));
+companyResults.createResultsElement();

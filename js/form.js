@@ -6,33 +6,33 @@ class Form {
   // class method to make input element in html
   // event listener is now here - really important!
   createInputElement() {
-    let myInput = document.createElement("input");
-    myInput.classList.add("form-control");
-    myInput.classList.add("autocompletes");
-    myInput.id = "myInput";
-    myInput.type = "text";
-    myInput.placeholder = "Start typing...";
-    myInput.addEventListener("focus", this.clearInput);
+    let searchInput = document.createElement("input");
+    searchInput.classList.add("form-control");
+    searchInput.classList.add("autocompletes");
+    searchInput.id = "myInput";
+    searchInput.type = "text";
+    searchInput.placeholder = "Start typing...";
+    searchInput.addEventListener("focus", this.clearInput);
     window.addEventListener("load", this.clearInput);
 
-    this.element.appendChild(myInput);
+    this.element.appendChild(searchInput);
 
-    let myButton = document.createElement("div");
-    myButton.classList.add("input-group-append");
-    myButton.id = "myButton";
+    let searchButtonDiv = document.createElement("div");
+    searchButtonDiv.classList.add("input-group-append");
+    searchButtonDiv.id = "myButton";
 
-    let theButton = document.createElement("button");
-    theButton.id = "searchButton";
-    theButton.type = "button";
-    theButton.classList.add("btn");
-    theButton.classList.add("btn-outline-secondary");
-    theButton.classList.add("purple-button");
-    theButton.textContent = "Search";
-    theButton.addEventListener("click", this.getCompanyData);
+    let searchButton = document.createElement("button");
+    searchButton.id = "searchButton";
+    searchButton.type = "button";
+    searchButton.classList.add("btn");
+    searchButton.classList.add("btn-outline-secondary");
+    searchButton.classList.add("purple-button");
+    searchButton.textContent = "Search";
+    searchButton.addEventListener("click", this.getCompanyData);
     // theButton.addEventListener("click", myResults.highlightText);
 
-    myButton.appendChild(theButton);
-    this.element.appendChild(myButton);
+    searchButtonDiv.appendChild(searchButton);
+    this.element.appendChild(searchButtonDiv);
   }
 
   //   Will get company profile if search is not empty and call function FROM RESULTS CLASS to make list.
@@ -46,14 +46,14 @@ class Form {
       document.getElementById("noInput").classList.remove("hidden");
     } else {
       fetch(
-        `https://financialmodelingprep.com/api/v3/search?query=${userInput}&limit=10&exchange=NASDAQ`
+        `https://financialmodelingprep.com/api/v3/search?query=${userInput}&limit=10&exchange=NASDAQ&apikey=${apiKey}`
       )
-        .then(response => {
+        .then((response) => {
           return response.json();
         })
-        .then(data => {
+        .then((data) => {
           let companyList = data;
-          myResults.makeCompanyList(companyList);
+          companyResults.makeCompanyList(companyList);
         });
     }
   }
@@ -67,5 +67,5 @@ class Form {
   }
 }
 
-let myForm = new Form(document.getElementById("form"));
-myForm.createInputElement();
+let searchForm = new Form(document.getElementById("form"));
+searchForm.createInputElement();

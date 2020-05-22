@@ -4,6 +4,8 @@ class Compare {
     this.count = 0;
     this.urlsymbols = [];
   }
+  // Renders compare company buttons after clicking compare button in the company List
+  // called in RESULTS CLASS
   compareButtons(mySymbol, companyProfile) {
     let link = document.getElementById("companyLink");
     if (this.urlsymbols.length < 3 && !this.urlsymbols.includes(mySymbol)) {
@@ -21,24 +23,26 @@ class Compare {
       document.getElementById("companyLink").classList.remove("hidden");
       this.element.classList.add("compare-div");
 
-      let companyButton = document.createElement("span");
-      companyButton.classList.add("company-button");
-      companyButton.id = "companyButton";
+      let companyButtonSpan = document.createElement("span");
+      companyButtonSpan.classList.add("company-button");
+      companyButtonSpan.id = "companyButton";
 
-      let theCompanyButton = document.createElement("button");
-      theCompanyButton.id = `${mySymbol}`;
-      theCompanyButton.type = "button";
-      theCompanyButton.classList.add("btn");
-      theCompanyButton.classList.add("btn-outline-secondary");
-      theCompanyButton.classList.add("compare-button");
-      theCompanyButton.textContent = `${mySymbol} x`;
-      theCompanyButton.addEventListener("click", () => {
+      let companyButton = document.createElement("button");
+      companyButton.id = `${mySymbol}`;
+      companyButton.type = "button";
+      companyButton.classList.add("btn");
+      companyButton.classList.add("btn-outline-secondary");
+      companyButton.classList.add("compare-button");
+      companyButton.textContent = `${mySymbol} x`;
+      companyButton.addEventListener("click", () => {
         this.removeCompareButtons(mySymbol, companyProfile);
       });
-      companyButton.appendChild(theCompanyButton);
-      this.element.appendChild(companyButton);
+      companyButtonSpan.appendChild(companyButton);
+      this.element.appendChild(companyButtonSpan);
     }
   }
+  // Removes rendered company compare buttons when clicked again
+  // called above in comareButtons
   removeCompareButtons(mySymbol, companyProfile) {
     let childButton = document.getElementById(`${mySymbol}`);
     childButton.parentNode.removeChild(childButton);
@@ -56,22 +60,23 @@ class Compare {
       link.textContent = `compare ${this.count} company`;
     }
   }
+  // Rendered company companies link
   compareLink() {
-    let companyLink = document.createElement("span");
-    companyLink.classList.add("company-link");
+    let companyLinkSpan = document.createElement("span");
+    companyLinkSpan.classList.add("company-link");
 
-    let theCompanyLink = document.createElement("a");
+    let companyLink = document.createElement("a");
     this.fullURL = `./compare.html?symbol=AAPL,AAON,AABA`;
-    theCompanyLink.href = `./compare.html?symbol=${this.urlsymbols}`;
-    theCompanyLink.id = "theCompanyLink";
-    theCompanyLink.classList.add("the-link");
-    theCompanyLink.classList.add("hidden");
-    theCompanyLink.id = "companyLink";
-    theCompanyLink.textContent = `compare companies`;
-    companyLink.appendChild(theCompanyLink);
-    this.element.appendChild(companyLink);
+    companyLink.href = `./compare.html?symbol=${this.urlsymbols}`;
+    companyLink.id = "theCompanyLink";
+    companyLink.classList.add("the-link");
+    companyLink.classList.add("hidden");
+    companyLink.id = "companyLink";
+    companyLink.textContent = `compare companies`;
+    companyLinkSpan.appendChild(companyLink);
+    this.element.appendChild(companyLinkSpan);
   }
 }
 
-let myCompare = new Compare(document.getElementById("compareDiv"));
-myCompare.compareLink();
+let comparing = new Compare(document.getElementById("compareDiv"));
+comparing.compareLink();

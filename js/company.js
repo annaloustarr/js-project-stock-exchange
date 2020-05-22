@@ -1,53 +1,55 @@
+let apiKey = "9b9e24c6bc1f1a8dd94de27a361bc77a";
+
 class Company {
   constructor(element) {
     this.element = element;
   }
 
   createCompanyElement() {
-    let myCompanyTitle = document.createElement("div");
-    myCompanyTitle.classList.add("company-title");
-    this.element.appendChild(myCompanyTitle);
+    let companyTitle = document.createElement("div");
+    companyTitle.classList.add("company-title");
+    this.element.appendChild(companyTitle);
 
-    let myCompanyLogo = document.createElement("span");
-    myCompanyLogo.id = "companyLogo";
-    myCompanyLogo.classList.add("company-logo");
-    myCompanyTitle.appendChild(myCompanyLogo);
+    let companyLogo = document.createElement("span");
+    companyLogo.id = "companyLogo";
+    companyLogo.classList.add("company-logo");
+    companyTitle.appendChild(companyLogo);
 
-    let myCompanyName = document.createElement("span");
-    myCompanyName.id = "companyName";
-    myCompanyName.classList.add("company-name");
-    myCompanyTitle.appendChild(myCompanyName);
+    let companyName = document.createElement("span");
+    companyName.id = "companyName";
+    companyName.classList.add("company-name");
+    companyTitle.appendChild(companyName);
 
-    let thePricesDiv = document.createElement("div");
-    this.element.appendChild(thePricesDiv);
+    let pricesDiv = document.createElement("div");
+    this.element.appendChild(pricesDiv);
 
-    let myStockPrice = document.createElement("span");
-    myStockPrice.id = "stockPrice";
-    myStockPrice.classList.add("stock-price");
-    thePricesDiv.appendChild(myStockPrice);
+    let stockPrice = document.createElement("span");
+    stockPrice.id = "stockPrice";
+    stockPrice.classList.add("stock-price");
+    pricesDiv.appendChild(stockPrice);
 
-    let myStockChanges = document.createElement("span");
-    myStockChanges.id = "stockChanges";
-    myStockChanges.classList.add("stock-changes");
-    thePricesDiv.appendChild(myStockChanges);
+    let stockChanges = document.createElement("span");
+    stockChanges.id = "stockChanges";
+    stockChanges.classList.add("stock-changes");
+    pricesDiv.appendChild(stockChanges);
 
-    let myDescription = document.createElement("div");
-    myDescription.id = "description";
-    myDescription.classList.add("description");
-    this.element.appendChild(myDescription);
+    let stockDesc = document.createElement("div");
+    stockDesc.id = "description";
+    stockDesc.classList.add("description");
+    this.element.appendChild(stockDesc);
 
-    let myLoader = document.createElement("div");
-    myLoader.id = "loader2";
-    myLoader.classList.add("loader2");
-    this.element.appendChild(myLoader);
+    let loader = document.createElement("div");
+    loader.id = "loader2";
+    loader.classList.add("loader2");
+    this.element.appendChild(loader);
 
-    let myChartDiv = document.createElement("div");
-    myChartDiv.classList.add("chart-size");
-    this.element.appendChild(myChartDiv);
+    let chartDiv = document.createElement("div");
+    chartDiv.classList.add("chart-size");
+    this.element.appendChild(chartDiv);
 
-    let myCanvas = document.createElement("canvas");
-    myCanvas.id = "myChart";
-    myChartDiv.appendChild(myCanvas);
+    let canvas = document.createElement("canvas");
+    canvas.id = "myChart";
+    chartDiv.appendChild(canvas);
 
     this.windowOnLoad();
   }
@@ -69,12 +71,12 @@ class Company {
   getCompanyProfile(symbolString) {
     document.getElementById("loader2").classList.remove("hidden");
     fetch(
-      `https://financialmodelingprep.com/api/v3/company/profile/${symbolString}`
+      `https://financialmodelingprep.com/api/v3/company/profile/${symbolString}?apikey=${apiKey}`
     )
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         let companyProfile = data.profile;
 
         let companyImage = companyProfile.image;
@@ -86,11 +88,11 @@ class Company {
         let companyChangesPercentage = companyProfile.changesPercentage;
 
         let imageSpan = document.getElementById("companyLogo");
-        let myImg = document.createElement("IMG");
-        myImg.setAttribute("src", companyImage);
-        myImg.setAttribute("height", "50px");
-        myImg.setAttribute("alt", "The logo");
-        imageSpan.appendChild(myImg);
+        let compLogo = document.createElement("IMG");
+        compLogo.setAttribute("src", companyImage);
+        compLogo.setAttribute("height", "50px");
+        compLogo.setAttribute("alt", "The logo");
+        imageSpan.appendChild(compLogo);
 
         document.getElementById("companyName").textContent = companyName;
         document.getElementById("stockPrice").textContent =
@@ -112,12 +114,12 @@ class Company {
   getCompanyStockHistory(symbolString) {
     document.getElementById("loader2").classList.remove("hidden");
     fetch(
-      `https://financialmodelingprep.com/api/v3/historical-price-full/${symbolString}?serietype=line`
+      `https://financialmodelingprep.com/api/v3/historical-price-full/${symbolString}?serietype=line&apikey=${apiKey}`
     )
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         let companyStockData = data.historical;
 
         let datalabelsArray = [];
@@ -146,15 +148,14 @@ class Company {
             backgroundColor: "rgb(255, 99, 132)",
             borderColor: "rgb(255, 99, 132)",
             fill: false,
-            data: dataPointsArray
-          }
-        ]
+            data: dataPointsArray,
+          },
+        ],
       },
-      options: {}
+      options: {},
     });
   }
 }
 
-let myNewCompany = new Company(document.getElementById("company"));
-myNewCompany.createCompanyElement();
-// myNewCompany.windowOnLoad();
+let newCompany = new Company(document.getElementById("company"));
+newCompany.createCompanyElement();

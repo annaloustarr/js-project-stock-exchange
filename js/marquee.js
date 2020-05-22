@@ -1,3 +1,5 @@
+let apiKey = "9b9e24c6bc1f1a8dd94de27a361bc77a";
+
 class Marquee {
   constructor(element) {
     this.element = element;
@@ -16,11 +18,13 @@ class Marquee {
 
   // class method to make list for marquee
   createMarqueeList() {
-    fetch(`https://financialmodelingprep.com/api/v3/stock/real-time-price`)
-      .then(response => {
+    fetch(
+      `https://financialmodelingprep.com/api/v3/stock/real-time-price?apikey=${apiKey}`
+    )
+      .then((response) => {
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         let stockList = data.stockList;
         let marqueeDiv = document.getElementById("marqueeList");
         for (let i = 0; i < 250; i++) {
@@ -44,9 +48,3 @@ class Marquee {
 let myMarquee = new Marquee(document.getElementById("marquee"));
 myMarquee.createMarqueeElement();
 myMarquee.createMarqueeList();
-
-//   keep map here incase I want all 10000+
-//   stockList.map(item => {
-//     let companySymbol = item.symbol;
-//     let companyPrice = item.price;
-//   });
