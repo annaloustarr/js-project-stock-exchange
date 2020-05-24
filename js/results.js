@@ -51,15 +51,13 @@ class Results {
   makeCompanyList(companyList) {
     this.clearList();
     companyList.map((item) => {
-      let companySymbol = item.symbol;
+      let compSymbol = item.symbol;
 
       fetch(
-        `https://financialmodelingprep.com/api/v3/company/profile/${companySymbol}?apikey=${apiKey}`
+        `https://financialmodelingprep.com/api/v3/company/profile/${compSymbol}?apikey=${apiKey}`
       )
         .then((response) => response.json())
         .then((data) => {
-          //destructuring
-          // let {image, changes, changesPercentage, companyName} = data.profile
           let companyProfile = data.profile;
 
           let listDiv = document.getElementById("dataList");
@@ -69,8 +67,8 @@ class Results {
           let searchTerm = inputFromUser.value;
 
           let companySymbol = document.createElement("a");
-          companySymbol.href = `./company.html?symbol=${companySymbol}`;
-          let symbolString = " (" + companySymbol + ")";
+          companySymbol.href = `./company.html?symbol=${compSymbol}`;
+          let symbolString = " (" + compSymbol + ")";
 
           let highlightSS = symbolString.replace(
             new RegExp(searchTerm, "gi"),
@@ -80,7 +78,7 @@ class Results {
           companySymbol.innerHTML = highlightSS;
 
           let companyName = document.createElement("a");
-          companyName.href = `./company.html?symbol=${companySymbol}`;
+          companyName.href = `./company.html?symbol=${compSymbol}`;
           let nameString = companyProfile.companyName;
 
           let highlightNS = nameString.replace(
@@ -112,14 +110,14 @@ class Results {
           compareButtonSpan.id = "compareButton";
 
           let compareButton = document.createElement("button");
-          compareButton.id = `${companySymbol}compareButton`;
+          compareButton.id = `${compSymbol}compareButton`;
           compareButton.type = "button";
           compareButton.classList.add("btn");
           compareButton.classList.add("btn-outline-secondary");
           compareButton.classList.add("half-curved");
           compareButton.textContent = "Compare";
           compareButton.addEventListener("click", () => {
-            comparing.compareButtons(companySymbol, companyProfile);
+            comparing.compareButtons(compSymbol, companyProfile);
           });
           compareButtonSpan.appendChild(compareButton);
 
